@@ -1,5 +1,6 @@
 package org.example;
 
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,7 +22,7 @@ public class TestController {
     }
 
     @PostMapping("/")
-    public PostResponseRecord login(@RequestBody PostRequestRecord requestBody) throws InterruptedException {
+    public PostResponseRecord login(@Valid @RequestBody PostRequestRecord requestBody) throws InterruptedException {
         ResponseDelay.startDelay();
         return new PostResponseRecord(
                 requestBody.login(),
