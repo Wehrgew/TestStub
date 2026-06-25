@@ -19,8 +19,19 @@ public class TestController {
     ) throws InterruptedException {
 
         ResponseDelay.startDelay();
+        User user =dbWorker.getUserByLogin(login);
 
-        return dbWorker.getUserByLogin(login);
+
+        if (user != null) {
+            FileWorker.save(user);
+        }
+
+        return user;
+    }
+
+    @GetMapping("/pumpum")
+    public String getRandom() {
+        return FileWorker.printRandomJson();
     }
 
     @PostMapping("/")
